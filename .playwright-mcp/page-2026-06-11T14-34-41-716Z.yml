@@ -1,0 +1,198 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "AlgoGators home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e7]:
+          - text: AlgoGators
+          - generic [ref=e8]: Investment Fund
+      - text: ↗
+      - button "Menu" [ref=e9] [cursor=pointer]
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - generic [ref=e17]: ▲University of Florida
+          - generic [ref=e18]: Gainesville, FL
+          - generic [ref=e19]: Est. 2023
+        - heading "AlgoGators Investment Fund" [level=1] [ref=e20]:
+          - generic [ref=e21]: AlgoGators
+          - generic [ref=e22]: Investment Fund
+        - generic [ref=e23]:
+          - paragraph [ref=e24]:
+            - text: Data Driven,
+            - emphasis [ref=e25]: Student Run.
+            - generic [ref=e26]: A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.
+          - generic [ref=e27]:
+            - link "Apply Now →" [ref=e28] [cursor=pointer]:
+              - /url: apply.html
+              - text: Apply Now
+              - generic [ref=e29]: →
+            - link "Read Research →" [ref=e30] [cursor=pointer]:
+              - /url: research.html
+              - text: Read Research
+              - generic [ref=e31]: →
+      - img
+      - generic [ref=e32]: Scroll
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e36]: $500K
+        - text: Assets Under Management
+      - generic [ref=e37]:
+        - generic [ref=e38]: "34"
+        - text: Student Analysts & Engineers
+      - generic [ref=e39]: Systematic Macro Strategies
+      - generic [ref=e40]:
+        - generic [ref=e41]: Est. 2023
+        - text: University of Florida
+      - generic [ref=e42]: Live Capital · Real Markets
+      - generic [ref=e43]:
+        - generic [ref=e44]: $500K
+        - text: Assets Under Management
+      - generic [ref=e45]:
+        - generic [ref=e46]: "34"
+        - text: Student Analysts & Engineers
+      - generic [ref=e47]: Systematic Macro Strategies
+      - generic [ref=e48]:
+        - generic [ref=e49]: Est. 2023
+        - text: University of Florida
+      - generic [ref=e50]: Live Capital · Real Markets
+    - generic [ref=e53]:
+      - generic [ref=e54]:
+        - generic [ref=e55]: $0K
+        - generic [ref=e56]: Assets Under Management
+      - generic [ref=e57]:
+        - generic [ref=e58]: "0"
+        - generic [ref=e59]: Active Members
+      - generic [ref=e60]:
+        - generic [ref=e61]: "0"
+        - generic [ref=e62]: Specialized Teams
+      - generic [ref=e63]:
+        - generic [ref=e64]: "0"
+        - generic [ref=e65]: Fund Established
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - paragraph [ref=e70]: 01Our Edge
+        - heading "Optimizing Finance" [level=2] [ref=e71]:
+          - text: Optimizing
+          - text: Finance
+      - generic [ref=e72]:
+        - paragraph [ref=e73]: Our strategic focus lies in creating portfolios built to capture uncorrelated returns by targeting diversified risk premia. We harness innovative analytics to deliver distinct, risk-adjusted performance through advanced algorithms.
+        - link "How We Trade →" [ref=e74] [cursor=pointer]:
+          - /url: what-we-do.html
+          - text: How We Trade
+          - generic [ref=e75]: →
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - heading "Why Join" [level=2] [ref=e79]
+        - paragraph [ref=e80]: 02Four Pillars
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - paragraph [ref=e83]: "01"
+          - heading "Experience" [level=3] [ref=e84]
+          - list [ref=e85]:
+            - listitem [ref=e86]: Direct involvement with live trading
+            - listitem [ref=e87]: Develop and deploy algorithms
+            - listitem [ref=e88]: Valuable, tangible experience
+        - generic [ref=e89]:
+          - paragraph [ref=e90]: "02"
+          - heading "Exploration" [level=3] [ref=e91]
+          - list [ref=e92]:
+            - listitem [ref=e93]: Insight into careers in quant finance
+            - listitem [ref=e94]: Direct mentorship from industry experts
+            - listitem [ref=e95]: Guidance on navigating the financial tech landscape
+        - generic [ref=e96]:
+          - paragraph [ref=e97]: "03"
+          - heading "Network" [level=3] [ref=e98]
+          - list [ref=e99]:
+            - listitem [ref=e100]: Interact with finance professionals
+            - listitem [ref=e101]: Forge connections with leading financial firms
+            - listitem [ref=e102]: Access to exclusive networking events
+        - generic [ref=e103]:
+          - paragraph [ref=e104]: "04"
+          - heading "Connection" [level=3] [ref=e105]
+          - list [ref=e106]:
+            - listitem [ref=e107]: Collaborate with peers and mentors
+            - listitem [ref=e108]: Join a community of forward-thinking students
+            - listitem [ref=e109]: Participate in team projects and competitions
+    - generic [ref=e111]:
+      - paragraph [ref=e112]: 03Open Meetings
+      - heading "Get Involved" [level=2] [ref=e113]:
+        - text: Get
+        - text: Involved
+      - generic [ref=e114]:
+        - paragraph [ref=e115]: Our team hosts public meetings every other Friday, open to anyone interested in quantitative finance. These meetings feature guest speakers and discussions on a variety of topics in the field.
+        - generic [ref=e116]:
+          - paragraph [ref=e117]: If you're considering a career in quant — or a position at AlgoGators — come connect with our team and see how we work.
+          - link "Start Your Application →" [ref=e118] [cursor=pointer]:
+            - /url: apply.html
+            - text: Start Your Application
+            - generic [ref=e119]: →
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - heading "The Team" [level=2] [ref=e123]
+        - paragraph [ref=e124]: 04Get In Touch
+      - generic [ref=e125]:
+        - generic [ref=e126]:
+          - img "AlgoGators team member" [ref=e128]
+          - img "AlgoGators team member" [ref=e130]
+          - img "AlgoGators team member" [ref=e132]
+          - img "AlgoGators team member" [ref=e134]
+          - img "AlgoGators team member" [ref=e136]
+          - img "AlgoGators team member" [ref=e138]
+          - img "AlgoGators team member" [ref=e140]
+          - img "AlgoGators team member" [ref=e142]
+          - img "AlgoGators team member" [ref=e144]
+        - generic [ref=e145]:
+          - heading "Interested in learning more?" [level=3] [ref=e146]
+          - paragraph [ref=e147]: Reach out with any questions
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - generic [ref=e151]: First Name *
+                - textbox "First Name *" [ref=e152]
+              - generic [ref=e153]:
+                - generic [ref=e154]: Last Name
+                - textbox "Last Name" [ref=e155]
+            - generic [ref=e156]:
+              - generic [ref=e157]: Email *
+              - textbox "Email *" [ref=e158]
+            - generic [ref=e159]:
+              - generic [ref=e160]: Message *
+              - textbox "Message *" [ref=e161]
+            - button "Send Message →" [ref=e163] [cursor=pointer]:
+              - text: Send Message
+              - generic [ref=e164]: →
+  - contentinfo [ref=e165]:
+    - generic [ref=e166]:
+      - generic [ref=e167]: AlgoGators
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - paragraph [ref=e170]:
+            - text: Data Driven,
+            - emphasis [ref=e171]: Student Run.
+          - paragraph [ref=e172]: The content provided on this website is for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation for any security, nor does it constitute an offer to provide investment advisory or other services by AlgoGators Investment Fund. Nothing on this website shall be considered a solicitation or offer to buy or sell any financial instrument or to offer or provide any investment advice or service to any person in any jurisdiction. Investing involves risk, including the possible loss of principal.
+        - generic [ref=e173]:
+          - heading "Site" [level=5] [ref=e174]
+          - navigation [ref=e175]:
+            - link "Home" [ref=e176] [cursor=pointer]:
+              - /url: index.html
+            - link "Who We Are" [ref=e177] [cursor=pointer]:
+              - /url: who-we-are.html
+            - link "What We Do" [ref=e178] [cursor=pointer]:
+              - /url: what-we-do.html
+            - link "How We Train" [ref=e179] [cursor=pointer]:
+              - /url: how-we-train.html
+            - link "Research" [ref=e180] [cursor=pointer]:
+              - /url: research.html
+        - generic [ref=e181]:
+          - heading "Join" [level=5] [ref=e182]
+          - navigation [ref=e183]:
+            - link "Apply Now" [ref=e184] [cursor=pointer]:
+              - /url: apply.html
+            - link "AlgoLens ↗" [ref=e185] [cursor=pointer]:
+              - /url: https://algolens.algogators.com/
+      - generic [ref=e186]:
+        - generic [ref=e187]: © 2026 AlgoGators Investment Fund
+        - generic [ref=e188]: University of Florida — Gainesville, FL

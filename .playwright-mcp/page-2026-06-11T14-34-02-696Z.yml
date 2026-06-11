@@ -1,0 +1,117 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "AlgoGators home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e7]:
+          - text: AlgoGators
+          - generic [ref=e8]: Investment Fund
+      - navigation "Primary" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: index.html
+        - link "Who We Are" [ref=e11] [cursor=pointer]:
+          - /url: who-we-are.html
+        - link "What We Do" [ref=e12] [cursor=pointer]:
+          - /url: what-we-do.html
+        - link "How We Train" [ref=e13] [cursor=pointer]:
+          - /url: how-we-train.html
+        - link "Research" [ref=e14] [cursor=pointer]:
+          - /url: research.html
+        - link "↗ AlgoLens" [ref=e15] [cursor=pointer]:
+          - /url: https://algolens.algogators.com/
+      - link "Apply Now" [ref=e16] [cursor=pointer]:
+        - /url: apply.html
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - paragraph [ref=e20]: 03The Strategy Pipeline
+      - heading "What We Do" [level=1] [ref=e21]
+      - paragraph [ref=e22]: AlgoGators crafts intelligent trading strategies that leverage economic and financial data to generate superior performance — every strategy moves through a four-stage pipeline before touching live capital.
+    - generic [ref=e23]:
+      - generic [ref=e25]:
+        - heading "The Process" [level=2] [ref=e26]
+        - paragraph [ref=e27]: Idea → Live Capital
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - generic: "01"
+            - paragraph [ref=e31]: Stage 01
+            - heading "Research" [level=3] [ref=e32]
+            - paragraph [ref=e33]: The process begins with thorough research to identify potential opportunities. This includes analyzing market trends, studying financial literature, and brainstorming strategy ideas.
+          - img "Research stage" [ref=e35]
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic: "02"
+            - paragraph [ref=e38]: Stage 02
+            - heading "Development" [level=3] [ref=e39]
+            - paragraph [ref=e40]: We transform ideas into actionable strategies by sourcing and preparing high-quality data. The model is then integrated into our trading system for evaluation and refinement.
+          - img "Development stage" [ref=e42]
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - generic: "03"
+            - paragraph [ref=e45]: Stage 03
+            - heading "Testing" [level=3] [ref=e46]
+            - paragraph [ref=e47]: Strategies are rigorously backtested over historical data to assess their performance. Parameters are optimized and risk management frameworks are incorporated to enhance consistency and scalability.
+          - img "Testing stage" [ref=e49]
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - generic: "04"
+            - paragraph [ref=e52]: Stage 04
+            - heading "Deployment" [level=3] [ref=e53]
+            - paragraph [ref=e54]: Successful strategies are deployed in live markets with continuous monitoring on our proprietary platform. Adjustments are made as needed to respond to evolving market conditions and maintain performance.
+          - img "Deployment stage" [ref=e56]
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - paragraph [ref=e61]: ▲The Fund
+        - paragraph [ref=e62]: The AlgoGators Investment Fund was launched in the Fall Semester of 2023. We currently have a team of 34, with backgrounds ranging from Finance to Computer Science to Biomedical Engineering. We are one of the only organizations in the country to offer undergraduate students an opportunity to trade live capital using sophisticated, algorithm-driven investment strategies.
+        - paragraph [ref=e63]: Our mission is to democratize the field of quantitative finance by making it accessible to a broader audience — providing our members with hands-on experience and the skills needed to excel in the industry.
+      - generic [ref=e64]:
+        - paragraph [ref=e65]: ▲What We Stand For
+        - paragraph [ref=e66]: Innovation
+        - paragraph [ref=e67]: Collaboration
+        - paragraph [ref=e68]: Excellence
+        - paragraph [ref=e69]: Integrity
+    - generic [ref=e71]:
+      - heading "See the work for yourself" [level=2] [ref=e72]
+      - paragraph [ref=e73]: Member research, capstone papers, and live market analysis.
+      - generic [ref=e74]:
+        - link "Read Our Research →" [ref=e75] [cursor=pointer]:
+          - /url: research.html
+          - text: Read Our Research
+          - generic [ref=e76]: →
+        - link "Explore AlgoLens ↗" [ref=e77] [cursor=pointer]:
+          - /url: https://algolens.algogators.com/
+          - text: Explore AlgoLens
+          - generic [ref=e78]: ↗
+  - contentinfo [ref=e79]:
+    - generic [ref=e80]:
+      - generic [ref=e81]: AlgoGators
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - paragraph [ref=e84]:
+            - text: Data Driven,
+            - emphasis [ref=e85]: Student Run.
+          - paragraph [ref=e86]: The content provided on this website is for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation for any security, nor does it constitute an offer to provide investment advisory or other services by AlgoGators Investment Fund. Nothing on this website shall be considered a solicitation or offer to buy or sell any financial instrument or to offer or provide any investment advice or service to any person in any jurisdiction. Investing involves risk, including the possible loss of principal.
+        - generic [ref=e87]:
+          - heading "Site" [level=5] [ref=e88]
+          - navigation [ref=e89]:
+            - link "Home" [ref=e90] [cursor=pointer]:
+              - /url: index.html
+            - link "Who We Are" [ref=e91] [cursor=pointer]:
+              - /url: who-we-are.html
+            - link "What We Do" [ref=e92] [cursor=pointer]:
+              - /url: what-we-do.html
+            - link "How We Train" [ref=e93] [cursor=pointer]:
+              - /url: how-we-train.html
+            - link "Research" [ref=e94] [cursor=pointer]:
+              - /url: research.html
+        - generic [ref=e95]:
+          - heading "Join" [level=5] [ref=e96]
+          - navigation [ref=e97]:
+            - link "Apply Now" [ref=e98] [cursor=pointer]:
+              - /url: apply.html
+            - link "AlgoLens ↗" [ref=e99] [cursor=pointer]:
+              - /url: https://algolens.algogators.com/
+      - generic [ref=e100]:
+        - generic [ref=e101]: © 2026 AlgoGators Investment Fund
+        - generic [ref=e102]: University of Florida — Gainesville, FL

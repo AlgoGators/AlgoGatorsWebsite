@@ -1,0 +1,106 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "AlgoGators home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e7]:
+          - text: AlgoGators
+          - generic [ref=e8]: Investment Fund
+      - navigation "Primary" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: index.html
+        - link "Who We Are" [ref=e11] [cursor=pointer]:
+          - /url: who-we-are.html
+        - link "What We Do" [ref=e12] [cursor=pointer]:
+          - /url: what-we-do.html
+        - link "How We Train" [ref=e13] [cursor=pointer]:
+          - /url: how-we-train.html
+        - link "Research" [ref=e14] [cursor=pointer]:
+          - /url: research.html
+        - link "↗ AlgoLens" [ref=e15] [cursor=pointer]:
+          - /url: https://algolens.algogators.com/
+      - link "Apply Now" [ref=e16] [cursor=pointer]:
+        - /url: apply.html
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - paragraph [ref=e20]: 04Analyst Training Program
+      - heading "How We Train" [level=1] [ref=e21]
+      - paragraph [ref=e22]: We prepare some of the brightest minds through a structured blend of intensive learning, collaborative mentorship, and real-world application.
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - paragraph [ref=e27]: 01The Curriculum
+        - heading "11 Weeks. Zero Shortcuts." [level=2] [ref=e28]:
+          - text: 11 Weeks.
+          - text: Zero Shortcuts.
+        - paragraph [ref=e29]: The AlgoGators Analyst Training Program is an intensive, 11-week curriculum designed to provide new analysts with the foundational skills and knowledge necessary to excel in quantitative finance. Our program covers essential topics, including derivative pricing, statistical modeling, algorithm development, risk management, and computer programming.
+        - paragraph [ref=e30]: Through live lectures from distinguished professors and guest speakers, analysts engage with both theoretical and practical components of financial markets. The program also incorporates biweekly readings, assignments, and one-on-one office hour discussions with senior team members.
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Program Highlights
+        - list [ref=e33]:
+          - listitem [ref=e34]: 11-week intensive curriculum
+          - listitem [ref=e35]: Live lectures from professors & guest speakers
+          - listitem [ref=e36]: Derivative pricing & statistical modeling
+          - listitem [ref=e37]: Algorithm development & risk management
+          - listitem [ref=e38]: One-on-one mentorship with senior analysts
+          - listitem [ref=e39]: Biweekly readings & assignments
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - heading "Capstone Project" [level=2] [ref=e43]
+        - paragraph [ref=e44]: 02Semester-Long Research
+      - generic [ref=e45]:
+        - paragraph [ref=e46]: The capstone project is the culminating experience of the AlgoGators Analyst Training Program, designed to integrate and apply the skills and knowledge acquired throughout the course. This semester-long research initiative incentivizes analysts to explore specialized topics and demonstrate their ability to think critically and strategically.
+        - paragraph [ref=e47]: Each analyst selects a research topic closely aligned with their specific role, using advanced quantitative methods, data analysis, and programming skills to test hypotheses, analyze market behaviors, and assess financial instruments.
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - paragraph [ref=e50]: Deliverable 01
+          - heading "Thesis" [level=4] [ref=e51]
+          - paragraph [ref=e52]: Outline of the research topic and objectives.
+        - generic [ref=e53]:
+          - paragraph [ref=e54]: Deliverable 02
+          - heading "Written Report" [level=4] [ref=e55]
+          - paragraph [ref=e56]: Comprehensive analysis including methodology, results, and proposed next steps.
+        - generic [ref=e57]:
+          - paragraph [ref=e58]: Deliverable 03
+          - heading "Presentation" [level=4] [ref=e59]
+          - paragraph [ref=e60]: Live presentation of findings to the full team and advisory board.
+    - generic [ref=e62]:
+      - paragraph [ref=e63]: ▲Recruiting
+      - heading "Ready to join?" [level=2] [ref=e64]
+      - paragraph [ref=e65]: Applications open mid-August 2026.
+      - link "Apply Now →" [ref=e67] [cursor=pointer]:
+        - /url: apply.html
+        - text: Apply Now
+        - generic [ref=e68]: →
+  - contentinfo [ref=e69]:
+    - generic [ref=e70]:
+      - generic [ref=e71]: AlgoGators
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - paragraph [ref=e74]:
+            - text: Data Driven,
+            - emphasis [ref=e75]: Student Run.
+          - paragraph [ref=e76]: The content provided on this website is for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation for any security, nor does it constitute an offer to provide investment advisory or other services by AlgoGators Investment Fund. Nothing on this website shall be considered a solicitation or offer to buy or sell any financial instrument or to offer or provide any investment advice or service to any person in any jurisdiction. Investing involves risk, including the possible loss of principal.
+        - generic [ref=e77]:
+          - heading "Site" [level=5] [ref=e78]
+          - navigation [ref=e79]:
+            - link "Home" [ref=e80] [cursor=pointer]:
+              - /url: index.html
+            - link "Who We Are" [ref=e81] [cursor=pointer]:
+              - /url: who-we-are.html
+            - link "What We Do" [ref=e82] [cursor=pointer]:
+              - /url: what-we-do.html
+            - link "How We Train" [ref=e83] [cursor=pointer]:
+              - /url: how-we-train.html
+            - link "Research" [ref=e84] [cursor=pointer]:
+              - /url: research.html
+        - generic [ref=e85]:
+          - heading "Join" [level=5] [ref=e86]
+          - navigation [ref=e87]:
+            - link "Apply Now" [ref=e88] [cursor=pointer]:
+              - /url: apply.html
+            - link "AlgoLens ↗" [ref=e89] [cursor=pointer]:
+              - /url: https://algolens.algogators.com/
+      - generic [ref=e90]:
+        - generic [ref=e91]: © 2026 AlgoGators Investment Fund
+        - generic [ref=e92]: University of Florida — Gainesville, FL

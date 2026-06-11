@@ -1,0 +1,143 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "AlgoGators home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e7]:
+          - text: AlgoGators
+          - generic [ref=e8]: Investment Fund
+      - navigation "Primary" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: index.html
+        - link "Who We Are" [ref=e11] [cursor=pointer]:
+          - /url: who-we-are.html
+        - link "What We Do" [ref=e12] [cursor=pointer]:
+          - /url: what-we-do.html
+        - link "How We Train" [ref=e13] [cursor=pointer]:
+          - /url: how-we-train.html
+        - link "Research" [ref=e14] [cursor=pointer]:
+          - /url: research.html
+        - link "↗ AlgoLens" [ref=e15] [cursor=pointer]:
+          - /url: https://algolens.algogators.com/
+      - link "Apply Now" [ref=e16] [cursor=pointer]:
+        - /url: apply.html
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - paragraph [ref=e20]: 05Published Work
+      - heading "Research" [level=1] [ref=e21]
+      - paragraph [ref=e22]: In addition to managing live capital, members conduct research across quantitative finance — market analysis, machine learning, risk management, and strategy development.
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: ▲Index — 10 Papers
+        - paragraph [ref=e27]: PDF ↗
+      - generic [ref=e28]:
+        - link "001 Bayesian Alpha Estimation via Fama-French + Momentum Model Zoey Cao ↗" [ref=e29] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/de05d6_ddef95a99fe3461188086b17045a3efe.pdf
+          - generic [ref=e30]: "001"
+          - generic [ref=e31]: Bayesian Alpha Estimation via Fama-French + Momentum Model
+          - generic [ref=e33]: Zoey Cao
+          - generic [ref=e34]: ↗
+        - link "002 Predicting U.S. Market Returns Using Fundamental Indicators Zhengmao Zhang ↗" [ref=e35] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/de05d6_ea29399f054846609b318889369ca632.pdf
+          - generic [ref=e36]: "002"
+          - generic [ref=e37]: Predicting U.S. Market Returns Using Fundamental Indicators
+          - generic [ref=e39]: Zhengmao Zhang
+          - generic [ref=e40]: ↗
+        - link "003 Pricing and Signal-Generation Under Stochastic Volatility Andria Gonzalez Lopez ↗" [ref=e41] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/de05d6_10912f98d83048508d09f90ebc0d6493.pdf
+          - generic [ref=e42]: "003"
+          - generic [ref=e43]: Pricing and Signal-Generation Under Stochastic Volatility
+          - generic [ref=e45]: Andria Gonzalez Lopez
+          - generic [ref=e46]: ↗
+        - link "004 Currency Risk Premia and Market Return Alexander Robbins ↗" [ref=e47] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/de05d6_d15973d78abb44f7be7156d6d078105b.pdf
+          - generic [ref=e48]: "004"
+          - generic [ref=e49]: Currency Risk Premia and Market Return
+          - generic [ref=e51]: Alexander Robbins
+          - generic [ref=e52]: ↗
+        - link "005 Corporate Credit Spreads as Predictors of Equity Market Performance Vishwa Kalal ↗" [ref=e53] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/de05d6_b97175ab854e4c8c8b591410a9fe8bdb.pdf
+          - generic [ref=e54]: "005"
+          - generic [ref=e55]: Corporate Credit Spreads as Predictors of Equity Market Performance
+          - generic [ref=e57]: Vishwa Kalal
+          - generic [ref=e58]: ↗
+        - 'link "006 Survival of the Fittest: Benchmarking Biological Dynamics and Neural ODEs for Volatility Forecasting John Riley Capstone ↗" [ref=e59] [cursor=pointer]':
+          - /url: https://www.algogators.com/_files/ugd/de05d6_12fb7efec2234173bc117f46af9a1bd3.pdf
+          - generic [ref=e60]: "006"
+          - generic [ref=e61]: "Survival of the Fittest: Benchmarking Biological Dynamics and Neural ODEs for Volatility Forecasting"
+          - generic [ref=e62]:
+            - generic [ref=e63]: John Riley
+            - generic [ref=e64]: Capstone
+          - generic [ref=e65]: ↗
+        - link "007 Shannon Entropy as a Forward Indicator of Volatility Regime Shifts in Energy Futures Krish Saluja Capstone ↗" [ref=e66] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/de05d6_b9908575d73b4b9792f8c1e8842c0b66.pdf
+          - generic [ref=e67]: "007"
+          - generic [ref=e68]: Shannon Entropy as a Forward Indicator of Volatility Regime Shifts in Energy Futures
+          - generic [ref=e69]:
+            - generic [ref=e70]: Krish Saluja
+            - generic [ref=e71]: Capstone
+          - generic [ref=e72]: ↗
+        - link "008 Mispriced Tail Risk and Optimal Exit Boundaries Jonah Nissan Capstone ↗" [ref=e73] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e74]: "008"
+          - generic [ref=e75]: Mispriced Tail Risk and Optimal Exit Boundaries
+          - generic [ref=e76]:
+            - generic [ref=e77]: Jonah Nissan
+            - generic [ref=e78]: Capstone
+          - generic [ref=e79]: ↗
+        - link "009 Hierarchical Hidden Markov Models for Multi-Time-Scale Volatility Regime Detection Anshuman Seetharaman Capstone ↗" [ref=e80] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e81]: "009"
+          - generic [ref=e82]: Hierarchical Hidden Markov Models for Multi-Time-Scale Volatility Regime Detection
+          - generic [ref=e83]:
+            - generic [ref=e84]: Anshuman Seetharaman
+            - generic [ref=e85]: Capstone
+          - generic [ref=e86]: ↗
+        - link "010 Examining the Explanatory Power of Political Risk on Oil Equity Returns Eric Schwarz Capstone ↗" [ref=e87] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e88]: "010"
+          - generic [ref=e89]: Examining the Explanatory Power of Political Risk on Oil Equity Returns
+          - generic [ref=e90]:
+            - generic [ref=e91]: Eric Schwarz
+            - generic [ref=e92]: Capstone
+          - generic [ref=e93]: ↗
+    - generic [ref=e95]:
+      - heading "Want to write the next one?" [level=2] [ref=e96]
+      - paragraph [ref=e97]: Every analyst completes a semester-long capstone research project.
+      - link "Apply Now →" [ref=e99] [cursor=pointer]:
+        - /url: apply.html
+        - text: Apply Now
+        - generic [ref=e100]: →
+  - contentinfo [ref=e101]:
+    - generic [ref=e102]:
+      - generic [ref=e103]: AlgoGators
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - paragraph [ref=e106]:
+            - text: Data Driven,
+            - emphasis [ref=e107]: Student Run.
+          - paragraph [ref=e108]: The content provided on this website is for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation for any security, nor does it constitute an offer to provide investment advisory or other services by AlgoGators Investment Fund. Nothing on this website shall be considered a solicitation or offer to buy or sell any financial instrument or to offer or provide any investment advice or service to any person in any jurisdiction. Investing involves risk, including the possible loss of principal.
+        - generic [ref=e109]:
+          - heading "Site" [level=5] [ref=e110]
+          - navigation [ref=e111]:
+            - link "Home" [ref=e112] [cursor=pointer]:
+              - /url: index.html
+            - link "Who We Are" [ref=e113] [cursor=pointer]:
+              - /url: who-we-are.html
+            - link "What We Do" [ref=e114] [cursor=pointer]:
+              - /url: what-we-do.html
+            - link "How We Train" [ref=e115] [cursor=pointer]:
+              - /url: how-we-train.html
+            - link "Research" [ref=e116] [cursor=pointer]:
+              - /url: research.html
+        - generic [ref=e117]:
+          - heading "Join" [level=5] [ref=e118]
+          - navigation [ref=e119]:
+            - link "Apply Now" [ref=e120] [cursor=pointer]:
+              - /url: apply.html
+            - link "AlgoLens ↗" [ref=e121] [cursor=pointer]:
+              - /url: https://algolens.algogators.com/
+      - generic [ref=e122]:
+        - generic [ref=e123]: © 2026 AlgoGators Investment Fund
+        - generic [ref=e124]: University of Florida — Gainesville, FL

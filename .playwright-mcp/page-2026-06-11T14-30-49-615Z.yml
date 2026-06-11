@@ -1,0 +1,223 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "AlgoGators home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e7]:
+          - text: AlgoGators
+          - generic [ref=e8]: Investment Fund
+      - navigation "Primary" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: index.html
+        - link "Who We Are" [ref=e11] [cursor=pointer]:
+          - /url: who-we-are.html
+        - link "What We Do" [ref=e12] [cursor=pointer]:
+          - /url: what-we-do.html
+        - link "How We Train" [ref=e13] [cursor=pointer]:
+          - /url: how-we-train.html
+        - link "Research" [ref=e14] [cursor=pointer]:
+          - /url: research.html
+        - link "↗ AlgoLens" [ref=e15] [cursor=pointer]:
+          - /url: https://algolens.algogators.com/
+      - link "Apply Now" [ref=e16] [cursor=pointer]:
+        - /url: apply.html
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - paragraph [ref=e20]: 02The People
+      - heading "Who We Are" [level=1] [ref=e21]
+      - paragraph [ref=e22]: AlgoGators enables a dynamic team of finance experts and quantitative analysts to combine deep market knowledge with innovative technology. Our goals go beyond just running a fund; we strive to democratize the field of quantitative finance and provide students with relevant, hands-on experience.
+    - generic [ref=e25]:
+      - img "The AlgoGators team" [ref=e26]
+      - generic [ref=e27]: ▲ The Fund — 34 Members Strong
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "Leadership" [level=2] [ref=e31]
+        - generic [ref=e32]: / 05
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - img "Dominick Dupuy" [ref=e37]
+          - paragraph [ref=e38]: Dominick Dupuy
+          - paragraph [ref=e39]: President
+        - generic [ref=e40]:
+          - img "Conner DeMichele" [ref=e42]
+          - paragraph [ref=e43]: Conner DeMichele
+          - paragraph [ref=e44]: Head of Macro
+        - generic [ref=e45]:
+          - img "Hemdutt Rao" [ref=e47]
+          - paragraph [ref=e48]: Hemdutt Rao
+          - paragraph [ref=e49]: Head of System Engineering
+        - generic [ref=e50]:
+          - img "Roshan Shah" [ref=e52]
+          - paragraph [ref=e53]: Roshan Shah
+          - paragraph [ref=e54]: Head of Data Engineering
+        - generic [ref=e55]:
+          - img "Michel Simon" [ref=e57]
+          - paragraph [ref=e58]: Michel Simon
+          - paragraph [ref=e59]: Head of Investor Relations
+      - generic [ref=e60]:
+        - heading "Macro" [level=2] [ref=e61]
+        - generic [ref=e62]: / 07
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - img "Riley Hebrank" [ref=e67]
+          - paragraph [ref=e68]: Riley Hebrank
+          - paragraph [ref=e69]: Senior Equities Analyst
+        - generic [ref=e70]:
+          - img "Bill Zhang" [ref=e72]
+          - paragraph [ref=e73]: Bill Zhang
+          - paragraph [ref=e74]: Senior Fixed Income Analyst
+        - generic [ref=e75]:
+          - img "Alexander Robbins" [ref=e77]
+          - paragraph [ref=e78]: Alexander Robbins
+          - paragraph [ref=e79]: Senior FX Analyst
+        - generic [ref=e80]:
+          - img "Dean Lucas" [ref=e82]
+          - paragraph [ref=e83]: Dean Lucas
+          - paragraph [ref=e84]: Senior Commodities Analyst
+        - generic [ref=e85]:
+          - img "Eric Schwarz" [ref=e87]
+          - paragraph [ref=e88]: Eric Schwarz
+          - paragraph [ref=e89]: Senior Analyst
+        - generic [ref=e90]:
+          - img "Vishwa Kalal" [ref=e92]
+          - paragraph [ref=e93]: Vishwa Kalal
+          - paragraph [ref=e94]: Senior Analyst
+        - generic [ref=e95]:
+          - img "Agnivesh Kaundinva" [ref=e97]
+          - paragraph [ref=e98]: Agnivesh Kaundinva
+          - paragraph [ref=e99]: Junior Analyst
+      - generic [ref=e100]:
+        - heading "System Engineering" [level=2] [ref=e101]
+        - generic [ref=e102]: / 09
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - img "Pratheek Nathani" [ref=e107]
+          - paragraph [ref=e108]: Pratheek Nathani
+          - paragraph [ref=e109]: Senior Quant Developer
+        - generic [ref=e110]:
+          - img "Pranav Bhargava" [ref=e112]
+          - paragraph [ref=e113]: Pranav Bhargava
+          - paragraph [ref=e114]: Senior Quant Developer
+        - generic [ref=e115]:
+          - img "Gannon Stoner" [ref=e117]
+          - paragraph [ref=e118]: Gannon Stoner
+          - paragraph [ref=e119]: Senior Quant Developer
+        - generic [ref=e120]:
+          - img "John Riley" [ref=e122]
+          - paragraph [ref=e123]: John Riley
+          - paragraph [ref=e124]: Quant Developer
+        - generic [ref=e125]:
+          - img "Sivan Pushpagiri" [ref=e127]
+          - paragraph [ref=e128]: Sivan Pushpagiri
+          - paragraph [ref=e129]: Junior Quant Developer
+        - generic [ref=e130]:
+          - img "Oliver Deng" [ref=e132]
+          - paragraph [ref=e133]: Oliver Deng
+          - paragraph [ref=e134]: Junior Quant Developer
+        - generic [ref=e135]:
+          - img "Hudson Shields" [ref=e137]
+          - paragraph [ref=e138]: Hudson Shields
+          - paragraph [ref=e139]: Junior Quant Developer
+        - generic [ref=e140]:
+          - img "Nhat Minh Hoang" [ref=e142]
+          - paragraph [ref=e143]: Nhat Minh Hoang
+          - paragraph [ref=e144]: Junior Quant Developer
+        - generic [ref=e145]:
+          - img "Nathan Kaul" [ref=e147]
+          - paragraph [ref=e148]: Nathan Kaul
+          - paragraph [ref=e149]: Junior Quant Developer
+      - generic [ref=e150]:
+        - heading "Data Engineering" [level=2] [ref=e151]
+        - generic [ref=e152]: / 06
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - img "Lucas John" [ref=e157]
+          - paragraph [ref=e158]: Lucas John
+          - paragraph [ref=e159]: Senior Data Engineer
+        - generic [ref=e160]:
+          - img "Jonah Nissan" [ref=e162]
+          - paragraph [ref=e163]: Jonah Nissan
+          - paragraph [ref=e164]: Data Engineer
+        - generic [ref=e165]:
+          - img "Gabrielle Polito" [ref=e167]
+          - paragraph [ref=e168]: Gabrielle Polito
+          - paragraph [ref=e169]: Data Engineer
+        - generic [ref=e170]:
+          - img "Fabio Jorge Hernandez" [ref=e172]
+          - paragraph [ref=e173]: Fabio Jorge Hernandez
+          - paragraph [ref=e174]: Data Engineer
+        - generic [ref=e175]:
+          - img "Dat Le" [ref=e177]
+          - paragraph [ref=e178]: Dat Le
+          - paragraph [ref=e179]: Data Engineer
+        - generic [ref=e180]:
+          - img "Sebastion Bernal-Orta" [ref=e182]
+          - paragraph [ref=e183]: Sebastion Bernal-Orta
+          - paragraph [ref=e184]: Data Engineer
+      - generic [ref=e185]:
+        - heading "Investor Relations" [level=2] [ref=e186]
+        - generic [ref=e187]: / 06
+      - generic [ref=e189]:
+        - generic [ref=e190]:
+          - img "Anna Claire Skipper" [ref=e192]
+          - paragraph [ref=e193]: Anna Claire Skipper
+          - paragraph [ref=e194]: Senior IR Associate
+        - generic [ref=e195]:
+          - img "Sian Jose" [ref=e197]
+          - paragraph [ref=e198]: Sian Jose
+          - paragraph [ref=e199]: IR Associate
+        - generic [ref=e200]:
+          - img "Nandini Karanam" [ref=e202]
+          - paragraph [ref=e203]: Nandini Karanam
+          - paragraph [ref=e204]: IR Associate
+        - generic [ref=e205]:
+          - img "Giancarlo Diaz" [ref=e207]
+          - paragraph [ref=e208]: Giancarlo Diaz
+          - paragraph [ref=e209]: Junior IR Associate
+        - generic [ref=e210]:
+          - img "Cristobal Aguilera" [ref=e212]
+          - paragraph [ref=e213]: Cristobal Aguilera
+          - paragraph [ref=e214]: Junior IR Associate
+        - generic [ref=e215]:
+          - img "Brennan Gilday" [ref=e217]
+          - paragraph [ref=e218]: Brennan Gilday
+          - paragraph [ref=e219]: Junior IR Associate
+    - generic [ref=e222]:
+      - img "Dustin Hebrank, Director" [ref=e225]
+      - generic [ref=e226]:
+        - paragraph [ref=e227]: ▲Director
+        - heading "Dustin Hebrank" [level=2] [ref=e228]
+        - paragraph [ref=e229]: Dustin Hebrank serves as AlgoGators' Director. He was the Chief Financial Officer at Gulf Winds International, a position he held since being introduced to the company in 2012 through the C12 network. His career began with Hilton Hotels in 1998 as Director of Finance, after which he joined a boutique investment bank in Tampa in 2004 to assist companies in raising growth and acquisition capital.
+  - contentinfo [ref=e230]:
+    - generic [ref=e231]:
+      - generic [ref=e232]: AlgoGators
+      - generic [ref=e233]:
+        - generic [ref=e234]:
+          - paragraph [ref=e235]:
+            - text: Data Driven,
+            - emphasis [ref=e236]: Student Run.
+          - paragraph [ref=e237]: The content provided on this website is for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation for any security, nor does it constitute an offer to provide investment advisory or other services by AlgoGators Investment Fund. Nothing on this website shall be considered a solicitation or offer to buy or sell any financial instrument or to offer or provide any investment advice or service to any person in any jurisdiction. Investing involves risk, including the possible loss of principal.
+        - generic [ref=e238]:
+          - heading "Site" [level=5] [ref=e239]
+          - navigation [ref=e240]:
+            - link "Home" [ref=e241] [cursor=pointer]:
+              - /url: index.html
+            - link "Who We Are" [ref=e242] [cursor=pointer]:
+              - /url: who-we-are.html
+            - link "What We Do" [ref=e243] [cursor=pointer]:
+              - /url: what-we-do.html
+            - link "How We Train" [ref=e244] [cursor=pointer]:
+              - /url: how-we-train.html
+            - link "Research" [ref=e245] [cursor=pointer]:
+              - /url: research.html
+        - generic [ref=e246]:
+          - heading "Join" [level=5] [ref=e247]
+          - navigation [ref=e248]:
+            - link "Apply Now" [ref=e249] [cursor=pointer]:
+              - /url: apply.html
+            - link "AlgoLens ↗" [ref=e250] [cursor=pointer]:
+              - /url: https://algolens.algogators.com/
+      - generic [ref=e251]:
+        - generic [ref=e252]: © 2026 AlgoGators Investment Fund
+        - generic [ref=e253]: University of Florida — Gainesville, FL

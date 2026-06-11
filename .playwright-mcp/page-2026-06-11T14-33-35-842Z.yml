@@ -1,0 +1,113 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "AlgoGators home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e7]:
+          - text: AlgoGators
+          - generic [ref=e8]: Investment Fund
+      - navigation "Primary" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: index.html
+        - link "Who We Are" [ref=e11] [cursor=pointer]:
+          - /url: who-we-are.html
+        - link "What We Do" [ref=e12] [cursor=pointer]:
+          - /url: what-we-do.html
+        - link "How We Train" [ref=e13] [cursor=pointer]:
+          - /url: how-we-train.html
+        - link "Research" [ref=e14] [cursor=pointer]:
+          - /url: research.html
+        - link "↗ AlgoLens" [ref=e15] [cursor=pointer]:
+          - /url: https://algolens.algogators.com/
+      - link "Apply Now" [ref=e16] [cursor=pointer]:
+        - /url: apply.html
+  - main [ref=e17]:
+    - generic [ref=e19]:
+      - paragraph [ref=e20]: 06Recruiting
+      - heading "Apply Now" [level=1] [ref=e21]
+      - paragraph [ref=e22]: ▼ How we pick the very best ▼
+    - generic [ref=e24]:
+      - generic [ref=e26]: Applications open mid-August 2026
+      - generic [ref=e27]: All majors welcome
+      - generic [ref=e28]: Analyst & Investor Relations tracks
+      - generic [ref=e30]: Applications open mid-August 2026
+      - generic [ref=e31]: All majors welcome
+      - generic [ref=e32]: Analyst & Investor Relations tracks
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: ▲Open to All
+          - heading "Exceptional students, any background." [level=2] [ref=e38]:
+            - text: Exceptional students,
+            - text: any background.
+        - generic [ref=e39]:
+          - paragraph [ref=e40]: AlgoGators encourages exceptional students of all academic backgrounds to submit applications. For more insight on the recruitment process, see our application guide below.
+          - paragraph [ref=e41]: ▲ Applications will open in mid-August 2026
+      - generic [ref=e42]:
+        - link "01 Application Guide Everything you need to know about recruiting ↗" [ref=e43] [cursor=pointer]:
+          - /url: https://www.algogators.com/_files/ugd/f92a3c_063f5d0ff3cf4206ab7d7e6c2582cd71.pdf
+          - generic [ref=e44]: "01"
+          - generic [ref=e45]: Application Guide
+          - generic [ref=e47]: Everything you need to know about recruiting
+          - generic [ref=e48]: ↗
+        - link "02 Strategy Example See the caliber of work we produce ↗" [ref=e49] [cursor=pointer]:
+          - /url: https://www.algogators.com/post/a-better-side-bet
+          - generic [ref=e50]: "02"
+          - generic [ref=e51]: Strategy Example
+          - generic [ref=e53]: See the caliber of work we produce
+          - generic [ref=e54]: ↗
+        - link "03 Analyst Application Macro · System Engineering · Data Engineering Form ↗" [ref=e55] [cursor=pointer]:
+          - /url: https://forms.office.com/r/KW8Znd1KwQ
+          - generic [ref=e56]: "03"
+          - generic [ref=e57]: Analyst Application
+          - generic [ref=e58]:
+            - generic [ref=e59]: Macro · System Engineering · Data Engineering
+            - generic [ref=e60]: Form
+          - generic [ref=e61]: ↗
+        - link "04 Investor Relations Application Outreach · Communications · Fundraising Form ↗" [ref=e62] [cursor=pointer]:
+          - /url: https://forms.office.com/r/kyqSpnHuWJ
+          - generic [ref=e63]: "04"
+          - generic [ref=e64]: Investor Relations Application
+          - generic [ref=e65]:
+            - generic [ref=e66]: Outreach · Communications · Fundraising
+            - generic [ref=e67]: Form
+          - generic [ref=e68]: ↗
+      - generic [ref=e69]:
+        - paragraph [ref=e70]: Not sure yet? Come to one of our open meetings — every other Friday.
+        - link "Get In Touch →" [ref=e71] [cursor=pointer]:
+          - /url: index.html#contact
+          - text: Get In Touch
+          - generic [ref=e72]: →
+  - contentinfo [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]: AlgoGators
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - paragraph [ref=e78]:
+            - text: Data Driven,
+            - emphasis [ref=e79]: Student Run.
+          - paragraph [ref=e80]: The content provided on this website is for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation for any security, nor does it constitute an offer to provide investment advisory or other services by AlgoGators Investment Fund. Nothing on this website shall be considered a solicitation or offer to buy or sell any financial instrument or to offer or provide any investment advice or service to any person in any jurisdiction. Investing involves risk, including the possible loss of principal.
+        - generic [ref=e81]:
+          - heading "Site" [level=5] [ref=e82]
+          - navigation [ref=e83]:
+            - link "Home" [ref=e84] [cursor=pointer]:
+              - /url: index.html
+            - link "Who We Are" [ref=e85] [cursor=pointer]:
+              - /url: who-we-are.html
+            - link "What We Do" [ref=e86] [cursor=pointer]:
+              - /url: what-we-do.html
+            - link "How We Train" [ref=e87] [cursor=pointer]:
+              - /url: how-we-train.html
+            - link "Research" [ref=e88] [cursor=pointer]:
+              - /url: research.html
+        - generic [ref=e89]:
+          - heading "Join" [level=5] [ref=e90]
+          - navigation [ref=e91]:
+            - link "Apply Now" [ref=e92] [cursor=pointer]:
+              - /url: apply.html
+            - link "AlgoLens ↗" [ref=e93] [cursor=pointer]:
+              - /url: https://algolens.algogators.com/
+      - generic [ref=e94]:
+        - generic [ref=e95]: © 2026 AlgoGators Investment Fund
+        - generic [ref=e96]: University of Florida — Gainesville, FL
