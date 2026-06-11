@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlgoGators — Hero Variations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/main.css" />
+  <style>
+    /* ── test-page chrome ── */
+    .picker {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; gap: 6px;
+      padding: 12px clamp(20px, 4vw, 48px);
+      background: var(--ink); border-bottom: 1px solid var(--line-d);
+      overflow-x: auto;
+    }
+    .picker span {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--muted-d); margin-right: 14px; white-space: nowrap;
+    }
+    .picker a {
+      font-family: var(--font-mono); font-size: 11px; color: #fff;
+      text-decoration: none; padding: 6px 14px; border: 1px solid rgba(255,255,255,.2);
+      white-space: nowrap; transition: all .2s;
+    }
+    .picker a:hover { background: var(--orange); border-color: var(--orange); }
+    .divider {
+      padding: 14px clamp(20px, 4vw, 48px);
+      background: var(--ink); color: var(--muted-d);
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--line-d); border-bottom: 1px solid var(--line-d);
+      position: relative; z-index: 3;
+    }
+    .divider b { color: var(--orange); font-weight: 600; }
+
+    .hero { padding-top: 64px; min-height: 96svh; transition: background .4s; }
+
+    /* entrance animations re-trigger per variant on scroll */
+    .hero .rise { animation-play-state: paused; }
+    .hero.on .rise { animation-play-state: running; }
+    .hero .hero-chart .line, .hero .hero-chart .fill { animation-play-state: paused; }
+    .hero.on .hero-chart .line, .hero.on .hero-chart .fill { animation-play-state: running; }
+
+    .hero-desc {
+      font-family: var(--font-body); font-weight: 400; font-size: 15px;
+      text-transform: none; letter-spacing: 0; color: var(--muted);
+      display: inline-block; margin-top: 10px; max-width: 420px; line-height: 1.7;
+    }
+
+    /* ════════ per-hero dark mode toggle ════════ */
+    .mode-btn {
+      position: absolute; top: 16px; right: clamp(20px, 4vw, 48px); z-index: 20;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+      background: transparent; color: var(--muted); border: 1px solid var(--line);
+      padding: 8px 14px; transition: all .25s;
+    }
+    .mode-btn::before { content: '◐ '; color: var(--orange); }
+    .mode-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .hero.dk .mode-btn { color: var(--muted-d); border-color: var(--line-d); }
+
+    /* ════════ generic dark-mode overrides ════════ */
+    .hero.dk { background: var(--ink); }
+    .hero.dk::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(to right,  rgba(255,92,0,.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,92,0,.05) 1px, transparent 1px);
+      background-size: 88px 88px;
+    }
+    .hero.dk .display { color: #fff; }
+    .hero.dk .display .stroke { -webkit-text-stroke: 2px #fff; }
+    .hero.dk .label { color: var(--muted-d); }
+    .hero.dk .hero-tagline { color: #fff; }
+    .hero.dk .hero-desc { color: var(--muted-d); }
+    .hero.dk .btn-solid:hover { background: #fff; color: var(--ink); box-shadow: none; }
+    .hero.dk .btn-line { color: #fff; border-color: rgba(255,255,255,.4); }
+    .hero.dk .btn-line:hover { background: #fff; color: var(--ink); border-color: #fff; }
+    .hero.dk .scroll-cue { color: var(--muted-d); }
+    .hero.dk .hero-chart .line { filter: drop-shadow(0 0 14px rgba(255,92,0,.5)); }
+    .hero > .wrap, .hero > .hero-chart { position: relative; z-index: 1; }
+    .hero > .hero-chart { position: absolute; }
+
+    /* ═══════════ 1 — GHOST TYPE (developed) ═══════════ */
+    .heroGhost { text-align: center; overflow: hidden; }
+    .heroGhost .ghost-wrap {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      transition: transform .6s var(--ease-out);
+    }
+    .heroGhost .ghost {
+      position: absolute; left: 50%; top: 50%; white-space: nowrap;
+      font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
+      text-transform: uppercase; letter-spacing: -.02em; line-height: 1;
+      font-size: clamp(110px, 23vw, 380px);
+      color: transparent; user-select: none;
+    }
+    .heroGhost .ghost.g1 {
+      -webkit-text-stroke: 1.5px rgba(20,20,26,.10);
+      animation: drift1 18s ease-in-out infinite alternate;
+    }
+    .heroGhost .ghost.g2 {
+      -webkit-text-stroke: 1.5px rgba(255,92,0,.13);
+      animation: drift2 18s ease-in-out infinite alternate;
+    }
+    @keyframes drift1 { from { transform: translate(-52.5%, -51.5%) } to { transform: translate(-47.5%, -48.5%) } }
+    @keyframes drift2 { from { transform: translate(-47.5%, -48%) } to { transform: translate(-52.5%, -52%) } }
+    .heroGhost.dk .ghost.g1 { -webkit-text-stroke-color: rgba(255,255,255,.08); }
+    .heroGhost .hero-meta { justify-content: center; }
+    .heroGhost .hero-title { font-size: clamp(40px, 7.6vw, 120px); }
+    .heroGhost .hero-foot { flex-direction: column; align-items: center; gap: 28px; }
+    .heroGhost .hero-tri-badge {
+      display: inline-block; margin-bottom: 26px;
+      animation: tri-bob 4s ease-in-out infinite alternate;
+    }
+    @keyframes tri-bob { from { transform: translateY(-4px) } to { transform: translateY(4px) } }
+
+    /* ═══════════ 2 — SPLIT SCREEN (developed) ═══════════ */
+    .heroSplit { padding: 0; display: block; }
+    .heroSplit .mode-btn { color: var(--muted-d); border-color: var(--line-d); }
+    .heroSplit .v4-grid { display: grid; grid-template-columns: 1.2fr 1fr; min-height: 96svh; position: relative; z-index: 1; }
+    .heroSplit .v4-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(48px, 8vh, 96px) clamp(20px, 4vw, 56px);
+    }
+    .heroSplit .hero-title { font-size: clamp(36px, 7.8vw, 122px); }
+    .heroSplit .v4-right {
+      position: relative; background: var(--ink); overflow: hidden;
+      display: flex; flex-direction: column;
+      padding: clamp(72px, 9vh, 96px) clamp(24px, 3vw, 48px) 0;
+    }
+    .heroSplit .v4-right::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .heroSplit.dk .v4-right { background: var(--ink-2); }
+    .heroSplit .v4-top {
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      position: relative; z-index: 2;
+    }
+    .heroSplit .v4-right .label { color: var(--muted-d); }
+    .heroSplit .v4-right .label .live { color: var(--orange); }
+    .heroSplit .v4-right .label .live::before { content: '● '; animation: blink 1.6s infinite; }
+    @keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: .25 } }
+    .heroSplit .v4-nav-readout { position: relative; z-index: 2; margin-top: clamp(28px, 5vh, 56px); }
+    .heroSplit .v4-nav-label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--muted-d);
+      display: block; margin-bottom: 10px;
+    }
+    .heroSplit .v4-nav {
+      font-family: var(--font-display); font-weight: 800; font-stretch: 120%;
+      font-size: clamp(44px, 4.6vw, 76px); line-height: 1; color: #fff;
+      font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+    }
+    .heroSplit .v4-delta {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+      letter-spacing: .1em; margin-left: 14px; color: var(--orange);
+      transition: color .3s;
+    }
+    .heroSplit .v4-delta.dn { color: var(--muted-d); }
+    .heroSplit .v4-rows { position: relative; z-index: 2; margin-top: clamp(24px, 4vh, 44px); }
+    .heroSplit .v4-rows > div {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 13px 0; border-top: 1px solid var(--line-d);
+      font-family: var(--font-mono);
+    }
+    .heroSplit .v4-rows span { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted-d); }
+    .heroSplit .v4-rows b { font-size: 14px; font-weight: 600; color: #fff; }
+    .heroSplit .v4-rows b.or { color: var(--orange); }
+    .heroSplit .v4-chart { position: absolute; left: 0; right: 0; bottom: 0; height: 34%; z-index: 1; }
+    .heroSplit .v4-chart .line {
+      fill: none; stroke: var(--orange); stroke-width: 2.5;
+      stroke-dasharray: 1600; stroke-dashoffset: 1600;
+      filter: drop-shadow(0 0 10px rgba(255,92,0,.45));
+    }
+    .heroSplit.on .v4-chart .line { animation: draw-line 2.4s .5s var(--ease-out) forwards; }
+    .heroSplit .v4-chart .fill { opacity: 0; }
+    .heroSplit.on .v4-chart .fill { animation: fade-in 1.4s 1.6s forwards; }
+    .heroSplit .v4-chart .dot { fill: var(--orange); opacity: 0; }
+    .heroSplit.on .v4-chart .dot { animation: fade-in .4s 2.6s forwards; }
+    .heroSplit .v4-chart .dot.pulse {
+      fill: none; stroke: var(--orange); stroke-width: 1.5;
+      transform-box: fill-box; transform-origin: center;
+    }
+    .heroSplit.on .v4-chart .dot.pulse { animation: dot-pulse 2s 2.8s ease-out infinite; }
+    @keyframes dot-pulse {
+      0% { transform: scale(.4); opacity: .9 }
+      100% { transform: scale(3.2); opacity: 0 }
+    }
+    .heroSplit .v4-watermark {
+      position: absolute; right: -6%; top: 6%; width: 52%; opacity: .55;
+      pointer-events: none; z-index: 0;
+      animation: tri-bob 7s ease-in-out infinite alternate;
+    }
+    @media (max-width: 860px) {
+      .heroSplit .v4-grid { grid-template-columns: 1fr; }
+      .heroSplit .v4-right { min-height: 60svh; padding-bottom: 0; }
+    }
+
+    /* ═══════════ 3 — ORANGE BLOCK (developed) ═══════════ */
+    .heroBlock .hero-title { font-size: clamp(36px, 9.4vw, 148px); }
+    .heroBlock .hero-title .block {
+      display: inline-block; color: var(--ink);
+      background-image: linear-gradient(var(--orange), var(--orange));
+      background-repeat: no-repeat; background-size: 0% 100%;
+      padding: .04em .14em .07em; margin-left: -.14em;
+    }
+    .heroBlock.on .hero-title .block { animation: block-wipe 1s .9s var(--ease-out) forwards; }
+    @keyframes block-wipe {
+      0%   { background-size: 0% 100%; color: var(--ink); }
+      45%  { color: var(--ink); }
+      62%  { color: #fff; }
+      100% { background-size: 100% 100%; color: #fff; }
+    }
+    .heroBlock.dk .hero-title .block { color: #fff; }
+    .heroBlock.dk.on .hero-title .block { animation-name: block-wipe-dk; }
+    @keyframes block-wipe-dk { 0% { background-size: 0% 100% } 100% { background-size: 100% 100% } }
+    .heroBlock .hero-title .stroke { transition: color .35s; cursor: default; }
+    .heroBlock .hero-title .stroke:hover { color: var(--orange); }
+    .heroBlock .v5-rule {
+      height: 3px; width: 0; background: var(--orange);
+      margin-top: clamp(26px, 4vh, 48px);
+    }
+    .heroBlock.on .v5-rule { animation: rule-grow 1.1s 1.5s var(--ease-out) forwards; }
+    @keyframes rule-grow { to { width: clamp(120px, 18vw, 280px) } }
+    .heroBlock .hero-foot { margin-top: clamp(20px, 3vh, 36px); }
+    .heroBlock .v5-side {
+      position: absolute; top: 50%; right: clamp(16px, 3vw, 44px);
+      transform: translateY(-50%); z-index: 2;
+      writing-mode: vertical-rl;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: .4em; text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .heroBlock .v5-side::before { content: ''; width: 1px; height: 72px; background: var(--orange); }
+    .heroBlock.dk .v5-side { color: var(--muted-d); }
+    @media (max-width: 720px) { .heroBlock .v5-side { display: none; } }
+
+    /* ═══════════ 4 — TERMINAL READOUT (new) ═══════════ */
+    .heroTerm { padding-top: 0; }
+    .heroTerm .t-bar {
+      display: flex; justify-content: space-between; align-items: center; gap: 18px;
+      flex-wrap: wrap;
+      padding: 13px clamp(20px, 4vw, 48px);
+      border-bottom: 1px solid var(--line);
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+      position: relative; z-index: 2;
+      margin-bottom: clamp(60px, 8vh, 110px);
+      margin-top: 64px;
+    }
+    .heroTerm .t-bar .t-live { color: var(--orange); animation: blink 1.6s infinite; }
+    .heroTerm.dk .t-bar { border-color: var(--line-d); color: var(--muted-d); }
+    .heroTerm .t-type {
+      font-family: var(--font-mono); font-size: clamp(12px, 1.4vw, 14px);
+      font-weight: 500; letter-spacing: .08em; color: var(--muted);
+      white-space: nowrap; overflow: hidden;
+      width: 0; border-right: .6em solid var(--orange);
+      margin-bottom: clamp(20px, 3vh, 34px);
+      max-width: fit-content;
+    }
+    .heroTerm.on .t-type { animation: t-typing 2.2s .4s steps(44) forwards, t-caret .8s step-end infinite; }
+    @keyframes t-typing { to { width: 44ch } }
+    @keyframes t-caret { 0%,100% { border-color: var(--orange) } 50% { border-color: transparent } }
+    .heroTerm.dk .t-type { color: var(--muted-d); }
+    .heroTerm .t-type b { color: var(--orange); font-weight: 600; }
+    .heroTerm .hero-title .cursor {
+      display: inline-block; width: .5ch; height: .78em;
+      background: var(--orange); margin-left: .06em;
+      animation: blink 1.1s step-end infinite;
+    }
+    .heroTerm .t-meta {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-top: clamp(22px, 3vh, 36px);
+    }
+
+    /* ═══════════ 5 — BLUEPRINT (new) ═══════════ */
+    .heroBP { cursor: crosshair; }
+    .heroBP .bp-frame {
+      position: absolute; inset: 84px clamp(48px, 6vw, 96px) 64px; z-index: 0;
+      border: 1px solid var(--line); pointer-events: none;
+    }
+    .heroBP.dk .bp-frame { border-color: var(--line-d); }
+    .heroBP .bp-frame i {
+      position: absolute; width: 13px; height: 13px; font-style: normal;
+    }
+    .heroBP .bp-frame i::before, .heroBP .bp-frame i::after {
+      content: ''; position: absolute; background: var(--orange);
+    }
+    .heroBP .bp-frame i::before { left: 6px; top: 0; width: 1.5px; height: 13px; }
+    .heroBP .bp-frame i::after  { left: 0; top: 6px; width: 13px; height: 1.5px; }
+    .heroBP .bp-frame i.tl { left: -7px; top: -7px; }  .heroBP .bp-frame i.tr { right: -7px; top: -7px; }
+    .heroBP .bp-frame i.bl { left: -7px; bottom: -7px; } .heroBP .bp-frame i.br { right: -7px; bottom: -7px; }
+    .heroBP .bp-axis-x {
+      position: absolute; left: clamp(48px, 6vw, 96px); right: clamp(48px, 6vw, 96px); bottom: 38px;
+      display: flex; justify-content: space-between; z-index: 2; pointer-events: none;
+      font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .15em; color: var(--muted);
+    }
+    .heroBP .bp-axis-y {
+      position: absolute; top: 84px; bottom: 64px; left: clamp(10px, 1.6vw, 28px);
+      display: flex; flex-direction: column-reverse; justify-content: space-between; z-index: 2; pointer-events: none;
+      font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .1em; color: var(--muted);
+    }
+    .heroBP.dk .bp-axis-x, .heroBP.dk .bp-axis-y { color: var(--muted-d); }
+    .heroBP .wrap { padding-left: clamp(64px, 8vw, 130px); }
+    .heroBP .hero-title { font-size: clamp(34px, 9vw, 142px); }
+    .heroBP .bp-note {
+      position: absolute; right: clamp(60px, 9vw, 150px); bottom: clamp(120px, 24vh, 260px); z-index: 2;
+      background: var(--paper); border: 1px solid var(--ink);
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+      padding: 9px 13px; pointer-events: none;
+      opacity: 0; transform: translateY(10px);
+    }
+    .heroBP.on .bp-note { animation: rise .8s 2.4s var(--ease-out) forwards; }
+    .heroBP .bp-note b { color: var(--orange); }
+    .heroBP .bp-note::after {
+      content: ''; position: absolute; left: 50%; bottom: -26px;
+      width: 1px; height: 26px; background: var(--orange);
+    }
+    .heroBP.dk .bp-note { background: var(--ink-2); border-color: var(--line-d); color: #fff; }
+    .heroBP .bp-cross-x, .heroBP .bp-cross-y {
+      position: absolute; background: rgba(255,92,0,.4); z-index: 3;
+      pointer-events: none; opacity: 0; transition: opacity .3s;
+    }
+    .heroBP .bp-cross-x { top: 0; bottom: 0; width: 1px; }
+    .heroBP .bp-cross-y { left: 0; right: 0; height: 1px; }
+    .heroBP .bp-readout {
+      position: absolute; z-index: 3; pointer-events: none; opacity: 0;
+      font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .12em;
+      color: var(--orange); background: var(--paper);
+      border: 1px solid var(--orange); padding: 4px 8px;
+      transform: translate(14px, 14px); white-space: nowrap;
+    }
+    .heroBP.dk .bp-readout { background: var(--ink); }
+    .heroBP:hover .bp-cross-x, .heroBP:hover .bp-cross-y, .heroBP:hover .bp-readout { opacity: 1; }
+    .heroBP .hero-chart .pt { fill: var(--orange); opacity: 0; }
+    .heroBP.on .hero-chart .pt { animation: fade-in .5s 2.2s forwards; }
+
+    /* ═══════════ 6 — TRIANGLE FOCUS (new) ═══════════ */
+    .heroTri { padding: 0; display: block; }
+    .heroTri .v6-grid {
+      display: grid; grid-template-columns: 1.15fr 1fr;
+      min-height: 96svh; align-items: center;
+      position: relative; z-index: 1;
+      padding: 0 clamp(20px, 4vw, 48px);
+      max-width: 1380px; margin: 0 auto; gap: clamp(24px, 4vw, 64px);
+    }
+    .heroTri .hero-title { font-size: clamp(36px, 7.4vw, 116px); }
+    .heroTri .v6-art { position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    .heroTri .v6-tri { width: min(100%, 44vh); }
+    .heroTri .v6-tri .outline {
+      fill: none; stroke: var(--orange); stroke-width: 2.5;
+      stroke-dasharray: 320; stroke-dashoffset: 320;
+    }
+    .heroTri.on .v6-tri .outline { animation: tri-draw 2.2s .4s var(--ease-out) forwards; }
+    @keyframes tri-draw { to { stroke-dashoffset: 0 } }
+    .heroTri .v6-tri .t-line {
+      fill: none; stroke: var(--orange); stroke-width: 1.4;
+      stroke-dasharray: 260; stroke-dashoffset: 260;
+    }
+    .heroTri.on .v6-tri .t-line { animation: tri-draw 2.4s 1.4s var(--ease-out) forwards; }
+    .heroTri .v6-tri .t-fill { opacity: 0; }
+    .heroTri.on .v6-tri .t-fill { animation: fade-in 1.4s 2.6s forwards; }
+    .heroTri .v6-tri .t-grid { stroke: var(--line); stroke-width: .4; }
+    .heroTri.dk .v6-tri .t-grid { stroke: var(--line-d); }
+    .heroTri .v6-cap {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--muted);
+      text-align: center;
+    }
+    .heroTri.dk .v6-cap { color: var(--muted-d); }
+    @media (max-width: 860px) {
+      .heroTri .v6-grid { grid-template-columns: 1fr; padding-top: 80px; padding-bottom: 48px; }
+      .heroTri .v6-art { order: -1; }
+      .heroTri .v6-tri { width: min(60%, 36vh); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="picker">
+  <span>Hero variations</span>
+  <a href="#v0">Current</a>
+  <a href="#v1">1 · Ghost Type</a>
+  <a href="#v2">2 · Split Screen</a>
+  <a href="#v3">3 · Orange Block</a>
+  <a href="#v4">4 · Terminal</a>
+  <a href="#v5">5 · Blueprint</a>
+  <a href="#v6">6 · Triangle</a>
+</nav>
+
+<main>
+
+<!-- ═══════════ V0 — CURRENT (reference) ═══════════ -->
+<div class="divider" id="v0"><b>Current</b> — for reference</div>
+<section class="hero">
+  <button class="mode-btn" type="button">Dark</button>
+  <div class="wrap" style="width:100%">
+    <div class="hero-meta rise d1">
+      <span class="label"><span class="idx">△</span>University of Florida</span>
+      <span class="label">Gainesville, FL</span>
+      <span class="label">Est. 2023</span>
+    </div>
+    <h1 class="display hero-title">
+      <span class="rise d2">AlgoGators</span>
+      <span class="rise d3" style="font-size:.617em"><span class="orange">Investment</span> <span class="stroke">Fund</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-tagline rise d4">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-chart" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="cf0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".14"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient></defs>
+    <path class="fill" fill="url(#cf0)" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28 L1440,320 L0,320 Z"/>
+    <path class="line" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28"/>
+  </svg>
+</section>
+
+<!-- ═══════════ V1 — GHOST TYPE (developed) ═══════════ -->
+<div class="divider" id="v1"><b>Variation 1</b> — Ghost Type · dual drifting wordmarks, mouse parallax, floating mark</div>
+<section class="hero heroGhost">
+  <button class="mode-btn" type="button">Dark</button>
+  <div class="ghost-wrap" aria-hidden="true">
+    <span class="ghost g2">AlgoGators</span>
+    <span class="ghost g1">AlgoGators</span>
+  </div>
+  <div class="wrap" style="width:100%">
+    <span class="hero-tri-badge rise d1" aria-hidden="true">
+      <svg viewBox="0 0 100 115" width="34"><polygon points="50,5 95,110 5,110" fill="none" stroke="#FF5C00" stroke-width="8"/></svg>
+    </span>
+    <div class="hero-meta rise d1">
+      <span class="label">University of Florida</span>
+      <span class="label">Gainesville, FL</span>
+      <span class="label">Est. 2023</span>
+    </div>
+    <h1 class="display hero-title">
+      <span class="rise d2">AlgoGators</span>
+      <span class="rise d3" style="font-size:.617em"><span class="orange">Investment</span> <span class="stroke">Fund</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-tagline rise d4">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc" style="max-width:460px">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-chart" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true" style="height:clamp(120px,20vh,220px)">
+    <defs><linearGradient id="cf1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".14"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient></defs>
+    <path class="fill" fill="url(#cf1)" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28 L1440,320 L0,320 Z"/>
+    <path class="line" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28"/>
+  </svg>
+</section>
+
+<!-- ═══════════ V2 — SPLIT SCREEN (developed) ═══════════ -->
+<div class="divider" id="v2"><b>Variation 2</b> — Split Screen · live NAV readout, fund ledger, pulsing chart endpoint</div>
+<section class="hero heroSplit">
+  <button class="mode-btn" type="button">Dark</button>
+  <div class="v4-grid">
+    <div class="v4-left">
+      <div class="hero-meta rise d1">
+        <span class="label"><span class="idx">△</span>University of Florida</span>
+        <span class="label">Gainesville, FL</span>
+        <span class="label">Est. 2023</span>
+      </div>
+      <h1 class="display hero-title">
+        <span class="rise d2">AlgoGators</span>
+        <span class="rise d3" style="font-size:.617em"><span class="orange">Investment</span> <span class="stroke">Fund</span></span>
+      </h1>
+      <p class="hero-tagline rise d4" style="margin-top:clamp(28px,4vh,52px)">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5" style="margin-top:32px">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="v4-right">
+      <svg class="v4-watermark" viewBox="0 0 100 115" aria-hidden="true">
+        <polygon points="50,5 95,110 5,110" fill="none" stroke="rgba(255,92,0,.35)" stroke-width="2"/>
+        <polygon points="50,32 81,103 19,103" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+      </svg>
+      <div class="v4-top">
+        <span class="label rise d2"><span class="live">Live Capital</span>&nbsp;· Real Markets</span>
+        <span class="label rise d2">Sim. Composite</span>
+      </div>
+      <div class="v4-nav-readout rise d3">
+        <span class="v4-nav-label">Portfolio NAV — Indexed</span>
+        <span class="v4-nav" id="navVal">104.82</span><span class="v4-delta" id="navDelta">▲ +4.82%</span>
+      </div>
+      <div class="v4-rows rise d4">
+        <div><span>Assets Under Management</span><b class="or">$500K</b></div>
+        <div><span>Analysts &amp; Engineers</span><b>34</b></div>
+        <div><span>Strategy</span><b>Systematic Macro</b></div>
+        <div><span>Mandate</span><b>Uncorrelated Risk Premia</b></div>
+      </div>
+      <svg class="v4-chart" viewBox="0 0 720 320" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="cf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".25"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient></defs>
+        <path class="fill" fill="url(#cf2)" d="M0,280 L60,250 L120,266 L180,220 L240,238 L300,186 L360,204 L420,152 L480,170 L540,116 L600,134 L660,76 L700,60 L720,320 L0,320 Z"/>
+        <path class="line" d="M0,280 L60,250 L120,266 L180,220 L240,238 L300,186 L360,204 L420,152 L480,170 L540,116 L600,134 L660,76 L700,60"/>
+        <circle class="dot" cx="700" cy="60" r="4.5"/>
+        <circle class="dot pulse" cx="700" cy="60" r="5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ V3 — ORANGE BLOCK (developed) ═══════════ -->
+<div class="divider" id="v3"><b>Variation 3</b> — Orange Block · animated highlight wipe, growing rule, hover-fill stroke</div>
+<section class="hero heroBlock">
+  <button class="mode-btn" type="button">Dark</button>
+  <div class="wrap" style="width:100%">
+    <div class="hero-meta rise d1">
+      <span class="label"><span class="idx">△</span>University of Florida</span>
+      <span class="label">Gainesville, FL</span>
+      <span class="label">Est. 2023</span>
+    </div>
+    <h1 class="display hero-title">
+      <span class="rise d2">AlgoGators</span>
+      <span class="rise d3" style="font-size:.617em"><span class="block">Investment</span> <span class="stroke">Fund</span></span>
+    </h1>
+    <div class="v5-rule" aria-hidden="true"></div>
+    <div class="hero-foot">
+      <p class="hero-tagline rise d4">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  <span class="v5-side" aria-hidden="true">Live Capital · Real Markets</span>
+  <svg class="hero-chart" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="cf3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".14"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient></defs>
+    <path class="fill" fill="url(#cf3)" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28 L1440,320 L0,320 Z"/>
+    <path class="line" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28"/>
+  </svg>
+</section>
+
+<!-- ═══════════ V4 — TERMINAL READOUT (new) ═══════════ -->
+<div class="divider" id="v4"><b>Variation 4</b> — Terminal Readout · status bar, live clock, typed boot line, cursor</div>
+<section class="hero heroTerm">
+  <button class="mode-btn" type="button" style="top:76px">Dark</button>
+  <div class="t-bar">
+    <span>AlgoGators://Home</span>
+    <span>University of Florida — Gainesville, FL</span>
+    <span class="t-live">● Live</span>
+    <span id="tClock">--:--:-- ET</span>
+  </div>
+  <div class="wrap" style="width:100%">
+    <p class="t-type" aria-hidden="true">&gt; systematic macro engine — est. 2023 ... <b>[ OK ]</b></p>
+    <h1 class="display hero-title">
+      <span class="rise d2">AlgoGators</span>
+      <span class="rise d3" style="font-size:.617em"><span class="orange">Investment</span> <span class="stroke">Fund</span><span class="cursor" aria-hidden="true"></span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-tagline rise d4">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-chart" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="cf4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".14"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient></defs>
+    <path class="fill" fill="url(#cf4)" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28 L1440,320 L0,320 Z"/>
+    <path class="line" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28"/>
+  </svg>
+</section>
+
+<!-- ═══════════ V5 — BLUEPRINT (new) ═══════════ -->
+<div class="divider" id="v5"><b>Variation 5</b> — Blueprint · plotted axes, corner registration marks, crosshair follows your mouse</div>
+<section class="hero heroBP">
+  <button class="mode-btn" type="button">Dark</button>
+  <div class="bp-frame" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+  <div class="bp-axis-y" aria-hidden="true"><span>0%</span><span>+10%</span><span>+20%</span><span>+30%</span><span>+40%</span></div>
+  <div class="bp-axis-x" aria-hidden="true"><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+  <div class="bp-cross-x" aria-hidden="true"></div>
+  <div class="bp-cross-y" aria-hidden="true"></div>
+  <div class="bp-readout" aria-hidden="true">t: — · y: —</div>
+  <div class="wrap" style="width:100%">
+    <div class="hero-meta rise d1">
+      <span class="label"><span class="idx">△</span>University of Florida</span>
+      <span class="label">Gainesville, FL</span>
+      <span class="label">Est. 2023</span>
+    </div>
+    <h1 class="display hero-title">
+      <span class="rise d2">AlgoGators</span>
+      <span class="rise d3" style="font-size:.617em"><span class="orange">Investment</span> <span class="stroke">Fund</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-tagline rise d4">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="bp-note">△ <b>+37.2%</b> — sim. composite</div>
+  <svg class="hero-chart" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="cf5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".14"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient></defs>
+    <path class="fill" fill="url(#cf5)" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28 L1440,320 L0,320 Z"/>
+    <path class="line" d="M0,290 L70,262 L140,276 L210,234 L280,252 L350,205 L420,224 L490,176 L560,196 L630,152 L700,170 L770,124 L840,145 L910,104 L980,122 L1050,82 L1120,98 L1190,64 L1260,78 L1330,46 L1440,28"/>
+    <circle class="pt" cx="490" cy="176" r="4"/>
+    <circle class="pt" cx="770" cy="124" r="4"/>
+    <circle class="pt" cx="1050" cy="82" r="4"/>
+    <circle class="pt" cx="1330" cy="46" r="4"/>
+  </svg>
+</section>
+
+<!-- ═══════════ V6 — TRIANGLE FOCUS (new) ═══════════ -->
+<div class="divider" id="v6"><b>Variation 6</b> — Triangle Focus · the brand mark draws itself with the equity curve inside</div>
+<section class="hero heroTri">
+  <button class="mode-btn" type="button">Dark</button>
+  <div class="v6-grid">
+    <div>
+      <div class="hero-meta rise d1">
+        <span class="label">University of Florida</span>
+        <span class="label">Gainesville, FL</span>
+        <span class="label">Est. 2023</span>
+      </div>
+      <h1 class="display hero-title">
+        <span class="rise d2">AlgoGators</span>
+        <span class="rise d3" style="font-size:.617em"><span class="orange">Investment</span> <span class="stroke">Fund</span></span>
+      </h1>
+      <p class="hero-tagline rise d4" style="margin-top:clamp(26px,4vh,48px)">Data Driven, <em>Student Run.</em><br>
+        <span class="hero-desc">A student-managed quantitative fund deploying real capital through disciplined, systematic macro strategies.</span>
+      </p>
+      <div class="hero-actions rise d5" style="margin-top:32px">
+        <a class="btn btn-solid" href="apply.html">Apply Now <span class="arr">→</span></a>
+        <a class="btn btn-line" href="research.html">Read Research <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="v6-art rise d3">
+      <svg class="v6-tri" viewBox="0 0 100 115" aria-hidden="true">
+        <defs>
+          <clipPath id="triClip"><polygon points="50,5 95,110 5,110"/></clipPath>
+          <linearGradient id="cf6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C00" stop-opacity=".2"/><stop offset="100%" stop-color="#FF5C00" stop-opacity="0"/></linearGradient>
+        </defs>
+        <g clip-path="url(#triClip)">
+          <g class="t-grid">
+            <line x1="0" y1="30" x2="100" y2="30"/><line x1="0" y1="50" x2="100" y2="50"/>
+            <line x1="0" y1="70" x2="100" y2="70"/><line x1="0" y1="90" x2="100" y2="90"/>
+            <line x1="25" y1="0" x2="25" y2="115"/><line x1="50" y1="0" x2="50" y2="115"/><line x1="75" y1="0" x2="75" y2="115"/>
+          </g>
+          <path class="t-fill" fill="url(#cf6)" d="M5,106 L15,98 L25,102 L35,88 L45,93 L55,74 L65,80 L75,56 L85,62 L95,34 L95,115 L5,115 Z"/>
+          <path class="t-line" d="M5,106 L15,98 L25,102 L35,88 L45,93 L55,74 L65,80 L75,56 L85,62 L95,34"/>
+        </g>
+        <polygon class="outline" points="50,5 95,110 5,110"/>
+      </svg>
+      <span class="v6-cap">Systematic Macro — Live Since 2023</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // entrance animations replay as each variant scrolls into view
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: .25 });
+  document.querySelectorAll('.hero').forEach(h => io.observe(h));
+
+  // per-hero dark mode toggles
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const hero = btn.closest('.hero');
+      const dark = hero.classList.toggle('dk');
+      btn.textContent = dark ? 'Light' : 'Dark';
+    });
+  });
+
+  // ghost: mouse parallax
+  const ghostHero = document.querySelector('.heroGhost');
+  const ghostWrap = ghostHero.querySelector('.ghost-wrap');
+  ghostHero.addEventListener('mousemove', e => {
+    const r = ghostHero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    ghostWrap.style.transform = `translate(${x * -36}px, ${y * -22}px)`;
+  });
+  ghostHero.addEventListener('mouseleave', () => { ghostWrap.style.transform = ''; });
+
+  // split screen: random-walk NAV readout
+  const navVal = document.getElementById('navVal');
+  const navDelta = document.getElementById('navDelta');
+  let nav = 104.82;
+  setInterval(() => {
+    nav = Math.max(95, nav + (Math.random() - .47) * .18);
+    const pct = nav - 100;
+    navVal.textContent = nav.toFixed(2);
+    navDelta.textContent = (pct >= 0 ? '▲ +' : '▼ ') + pct.toFixed(2) + '%';
+    navDelta.classList.toggle('dn', pct < 0);
+  }, 1400);
+
+  // terminal: live ET clock
+  const tClock = document.getElementById('tClock');
+  function tickClock() {
+    tClock.textContent = new Date().toLocaleTimeString('en-US', {
+      hour12: false, timeZone: 'America/New_York'
+    }) + ' ET';
+  }
+  tickClock(); setInterval(tickClock, 1000);
+
+  // blueprint: crosshair + readout following the mouse
+  const bp = document.querySelector('.heroBP');
+  const crossX = bp.querySelector('.bp-cross-x');
+  const crossY = bp.querySelector('.bp-cross-y');
+  const readout = bp.querySelector('.bp-readout');
+  bp.addEventListener('mousemove', e => {
+    const r = bp.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    crossX.style.left = x + 'px';
+    crossY.style.top = y + 'px';
+    readout.style.left = Math.min(x, r.width - 190) + 'px';
+    readout.style.top = Math.min(y, r.height - 50) + 'px';
+    const t = (2023 + (x / r.width) * 3.5).toFixed(1);
+    const v = ((1 - y / r.height) * 40).toFixed(1);
+    readout.textContent = `t: ${t} · y: +${v}%`;
+  });
+</script>
+
+</body>
+</html>
