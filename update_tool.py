@@ -2,12 +2,14 @@ import sys
 import os
 import shutil
 import re
-import subprocess
+import json
+import base64
 import threading
 from pathlib import Path
 from tkinter import filedialog, messagebox
 
 import customtkinter as ctk
+import requests
 
 # Try to load tkinterdnd2 for native drag-and-drop
 try:
@@ -17,12 +19,12 @@ except ImportError:
     HAS_DND = False
     DND_FILES = None
 
-# When frozen by PyInstaller the exe lives next to the site files
 if getattr(sys, "frozen", False):
     SITE_ROOT = Path(sys.executable).parent
 else:
     SITE_ROOT = Path(__file__).parent
 
+CONFIG_FILE   = SITE_ROOT / "_tool" / "config.json"
 RESEARCH_HTML = SITE_ROOT / "research.html"
 WHO_HTML      = SITE_ROOT / "who-we-are.html"
 HEADSHOTS_DIR = SITE_ROOT / "Headshots"
@@ -37,11 +39,11 @@ DEPARTMENTS = [
 ]
 
 DEPT_KEY = {
-    "Leadership":                           "LEADERSHIP",
-    "Quantitative Research":                "QR",
-    "Quantitative Trading":                 "QT",
+    "Leadership":                             "LEADERSHIP",
+    "Quantitative Research":                  "QR",
+    "Quantitative Trading":                   "QT",
     "Quantitative Development / Engineering": "QDE",
-    "Investor Relations":                   "IR",
+    "Investor Relations":                     "IR",
 }
 
 # ── theme constants ─────────────────────────────────────────────────────────
@@ -73,10 +75,27 @@ class App(ctk.CTk):
         self.title("AlgoGators — Update Tool")
         self.resizable(False, False)
         self.configure(fg_color=BG)
-        self._pdf_path  = None
-        self._img_path  = None
-        self._last_msg  = "Updated website content"
-        self._show_home()
+        self._pdf_path       = None
+        self._img_path       = None
+        self._last_msg       = "Updated website content"
+        self._pdf_fname      = None
+        self._headshot_fname = None
+
+        if self._config_valid():
+            self._show_home()
+        else:
+            self._show_setup()
+
+    # ── config helpers ───────────────────────────────────────────────────────
+    def _load_config_safe(self):
+        try:
+            return json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return None
+
+    def _config_valid(self):
+        cfg = self._load_config_safe()
+        return bool(cfg and cfg.get("pat") and cfg.get("owner") and cfg.get("repo"))
 
     # ── layout helpers ───────────────────────────────────────────────────────
     def _clear(self):
@@ -167,10 +186,74 @@ class App(ctk.CTk):
                   lambda: self._push(commit_label), primary=False).pack(
             side="left", expand=True, fill="x")
 
+    # ── setup / config screen ────────────────────────────────────────────────
+    def _show_setup(self, from_settings=False):
+        self._clear()
+        self.geometry("520x460")
+
+        if from_settings:
+            self._back_btn()
+
+        top_pad = (10, 4) if from_settings else (36, 4)
+        self._lbl(self, "GitHub Setup", 20, bold=True).pack(pady=top_pad)
+        self._lbl(self, "Connect the tool to your GitHub repository", 12,
+                  color=MUTED).pack(pady=(0, 20))
+
+        card = self._card(self)
+        card.pack(fill="x", padx=20)
+
+        self._lbl(card, "PERSONAL ACCESS TOKEN", 10, color=MUTED, anchor="w").pack(
+            fill="x", padx=16, pady=(16, 2))
+        self.cfg_pat = ctk.CTkEntry(
+            card, height=42,
+            font=ctk.CTkFont("Poppins", 13),
+            fg_color="#0F0F0F", border_color=BORDER,
+            placeholder_text="ghp_...",
+            show="•", corner_radius=6,
+        )
+        self.cfg_pat.pack(fill="x", padx=16, pady=(0, 12))
+
+        self._lbl(card, "GITHUB OWNER / ORG", 10, color=MUTED, anchor="w").pack(
+            fill="x", padx=16, pady=(0, 2))
+        self.cfg_owner = self._entry(card, "e.g. AlgoGators")
+        self.cfg_owner.pack(fill="x", padx=16, pady=(0, 12))
+
+        self._lbl(card, "REPOSITORY NAME", 10, color=MUTED, anchor="w").pack(
+            fill="x", padx=16, pady=(0, 2))
+        self.cfg_repo = self._entry(card, "e.g. algogators-website")
+        self.cfg_repo.pack(fill="x", padx=16, pady=(0, 16))
+
+        # Pre-fill existing values if present
+        existing = self._load_config_safe()
+        if existing:
+            self.cfg_pat.insert(0, existing.get("pat", ""))
+            self.cfg_owner.insert(0, existing.get("owner", ""))
+            self.cfg_repo.insert(0, existing.get("repo", ""))
+
+        self._btn(self, "Save & Continue", self._save_config).pack(
+            fill="x", padx=20, pady=(16, 0))
+
+        self.cfg_st = self._lbl(self, "", 12, color=MUTED)
+        self.cfg_st.pack(pady=(8, 0))
+
+    def _save_config(self):
+        pat   = self.cfg_pat.get().strip()
+        owner = self.cfg_owner.get().strip()
+        repo  = self.cfg_repo.get().strip()
+
+        if not pat or not owner or not repo:
+            self.cfg_st.configure(text="⚠  All fields are required.", text_color=RED)
+            return
+
+        cfg = {"pat": pat, "owner": owner, "repo": repo}
+        CONFIG_FILE.parent.mkdir(exist_ok=True)
+        CONFIG_FILE.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
+        self._show_home()
+
     # ── home ─────────────────────────────────────────────────────────────────
     def _show_home(self):
         self._clear()
-        self.geometry("520x370")
+        self.geometry("520x400")
 
         # Triangle logo
         canvas = ctk.CTkCanvas(self, width=40, height=40, bg=BG,
@@ -188,6 +271,14 @@ class App(ctk.CTk):
                   width=195).grid(row=0, column=0, padx=8)
         self._btn(row, "Add Headshot", self._show_headshot,
                   primary=False, width=195).grid(row=0, column=1, padx=8)
+
+        ctk.CTkButton(
+            self, text="⚙  Settings", width=120, height=28,
+            font=ctk.CTkFont("Poppins", 11),
+            fg_color="transparent", hover_color=BORDER,
+            text_color=MUTED,
+            command=lambda: self._show_setup(from_settings=True),
+        ).pack(pady=(18, 0))
 
     # ── research form ─────────────────────────────────────────────────────────
     def _show_research(self):
@@ -285,10 +376,12 @@ class App(ctk.CTk):
         num   = str(count + 1).zfill(3)
 
         href = "#"
+        self._pdf_fname = None
         if self._pdf_path and Path(self._pdf_path).exists():
             fname = Path(self._pdf_path).name
             shutil.copy2(self._pdf_path, RESEARCH_DIR / fname)
             href  = f"Research/{fname}"
+            self._pdf_fname = fname
 
         tag = '<span class="tag">Capstone</span>' if cap else ""
         new_row = (
@@ -328,6 +421,7 @@ class App(ctk.CTk):
         ext   = Path(self._img_path).suffix.lower()
         fname = name.replace(" ", "_") + ext
         shutil.copy2(self._img_path, HEADSHOTS_DIR / fname)
+        self._headshot_fname = fname
 
         member = (
             f'      <div class="member" data-reveal>'
@@ -358,36 +452,68 @@ class App(ctk.CTk):
         self._last_msg = f"Add headshot: {name} ({dept})"
         self.h_st.configure(text=f"✓  {name} added. Click Push to go live.", text_color=GREEN)
 
-    # ── git push ──────────────────────────────────────────────────────────────
+    # ── GitHub API push ───────────────────────────────────────────────────────
     def _push(self, kind):
-        msg = self._last_msg
+        cfg = self._load_config_safe()
+        if not cfg or not cfg.get("pat") or not cfg.get("owner") or not cfg.get("repo"):
+            messagebox.showerror(
+                "Not configured",
+                "GitHub settings are missing.\nOpen ⚙ Settings and fill in all fields.")
+            return
+
+        msg     = self._last_msg
+        owner   = cfg["owner"]
+        repo    = cfg["repo"]
+        pat     = cfg["pat"]
+        headers = {
+            "Authorization": f"token {pat}",
+            "Accept": "application/vnd.github+json",
+        }
+
+        def push_file(api_path, local_path):
+            url = f"https://api.github.com/repos/{owner}/{repo}/contents/{api_path}"
+
+            r = requests.get(url, headers=headers)
+            if r.status_code not in (200, 404):
+                try:
+                    err = r.json().get("message", r.text)
+                except Exception:
+                    err = r.text
+                raise RuntimeError(f"GET {api_path} returned {r.status_code}:\n{err}")
+
+            sha = r.json().get("sha") if r.status_code == 200 else None
+
+            b64 = base64.b64encode(Path(local_path).read_bytes()).decode()
+            payload = {"message": msg, "content": b64}
+            if sha:
+                payload["sha"] = sha
+
+            r = requests.put(url, headers=headers, json=payload)
+            if r.status_code not in (200, 201):
+                try:
+                    err = r.json().get("message", r.text)
+                except Exception:
+                    err = r.text
+                raise RuntimeError(f"PUT {api_path} returned {r.status_code}:\n{err}")
 
         def run():
             try:
-                subprocess.run(
-                    ["git", "-C", str(SITE_ROOT), "add", "."],
-                    check=True, capture_output=True,
-                )
-                commit = subprocess.run(
-                    ["git", "-C", str(SITE_ROOT), "commit", "-m", msg],
-                    capture_output=True, text=True,
-                )
-                if commit.returncode != 0 and "nothing to commit" not in commit.stdout:
-                    err = commit.stderr or commit.stdout
-                    self.after(0, lambda: messagebox.showerror("Commit failed", err))
-                    return
+                if kind == "research":
+                    push_file("research.html", RESEARCH_HTML)
+                    if self._pdf_fname and (RESEARCH_DIR / self._pdf_fname).exists():
+                        push_file(f"Research/{self._pdf_fname}",
+                                  RESEARCH_DIR / self._pdf_fname)
+                elif kind == "headshot":
+                    push_file("who-we-are.html", WHO_HTML)
+                    if self._headshot_fname and (HEADSHOTS_DIR / self._headshot_fname).exists():
+                        push_file(f"Headshots/{self._headshot_fname}",
+                                  HEADSHOTS_DIR / self._headshot_fname)
 
-                push = subprocess.run(
-                    ["git", "-C", str(SITE_ROOT), "push"],
-                    capture_output=True, text=True,
-                )
-                if push.returncode == 0:
-                    self.after(0, lambda: messagebox.showinfo(
-                        "Pushed ✓", f"Live on GitHub!\n\n{msg}"))
-                else:
-                    self.after(0, lambda: messagebox.showerror("Push failed", push.stderr))
+                self.after(0, lambda: messagebox.showinfo(
+                    "Pushed ✓", f"Live on GitHub!\n\n{msg}"))
             except Exception as exc:
-                self.after(0, lambda: messagebox.showerror("Error", str(exc)))
+                err = str(exc)
+                self.after(0, lambda e=err: messagebox.showerror("Push failed", e))
 
         threading.Thread(target=run, daemon=True).start()
 
